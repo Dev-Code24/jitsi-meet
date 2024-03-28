@@ -1528,6 +1528,9 @@ var config = {
      dialOutRegionUrl
      disableRemoteControl
      displayJids
+     // --DEV-CODE EDITS DOWN
+     externalConnectUrl
+     // --DEV-CODE EDITS UP
      firefox_fake_device
      googleApiApplicationClientID
      iAmRecorder

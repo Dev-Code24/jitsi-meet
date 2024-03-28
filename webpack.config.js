@@ -306,6 +306,18 @@ module.exports = (_env, argv) => {
             ],
             performance: getPerformanceHints(perfHintOptions, 800 * 1024)
         }),
+        // --DEV-CODE EDITS DOWN
+        Object.assign({}, config, {
+            entry: {
+                'do_external_connect': './connection_optimization/do_external_connect.js'
+            },
+            plugins: [
+                ...config.plugins,
+                ...getBundleAnalyzerPlugin(analyzeBundle, 'do_external_connect')
+            ],
+            performance: getPerformanceHints(perfHintOptions, 5 * 1024)
+        }),
+        // --DEV-CODE EDITS UP
         Object.assign({}, config, {
             entry: {
                 'analytics-ga': './react/features/analytics/handlers/GoogleAnalyticsHandler.ts'
