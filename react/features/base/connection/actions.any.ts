@@ -19,10 +19,11 @@ import {
     CONNECTION_WILL_CONNECT,
     SET_LOCATION_URL,
     SET_PREFER_VISITOR
-} from './actionTypes';
+} from './actionTypes.ts';
 import { JITSI_CONNECTION_URL_KEY } from './constants';
 import logger from './logger';
 import { ConnectionFailedError, IIceServers } from './types';
+import checkForAttachParametersAndConnect from '../../../../connection_optimization/checkForAttachParametersAndConnect.js';
 
 /**
  * The options that will be passed to the JitsiConnection instance.
@@ -197,59 +198,6 @@ export function setPreferVisitor(preferVisitor: boolean) {
         preferVisitor
     };
 }
-
-// --DEV-CODE EDITS DOWN
-/**
- * Checks if we have data to use attach instead of connect. If we have the data
- * executes attach otherwise check if we have to wait for the data. If we have
- * to wait for the attach data we are setting handler to APP.connect.handler
- * which is going to be called when the attach data is received otherwise
- * executes connect.
- *
- * @param {string} [id] user id
- * @param {string} [password] password
- * @param {string} [roomName] the name of the conference.
- */
-function checkForAttachParametersAndConnect(id, password, connection) {
-    if (window.XMPPAttachInfo) {
-        APP.connect.status = 'connecting';
-
-        // When connection optimization is not deployed or enabled the default
-        // value will be window.XMPPAttachInfo.status = "error"
-        // If the connection optimization is deployed and enabled and there is
-        // a failure the value will be window.XMPPAttachInfo.status = "error"
-        if (window.XMPPAttachInfo.status === 'error') {
-            connection.connect({
-                id,
-                password
-            });
-
-            return;
-        }
-
-        const attachOptions = window.XMPPAttachInfo.data;
-
-        if (attachOptions) {
-            connection.attach(attachOptions);
-            delete window.XMPPAttachInfo.data;
-        } else {
-            connection.connect({
-                id,
-                password
-            });
-        }
-    } else {
-        APP.connect.status = 'ready';
-        APP.connect.handler
-            = checkForAttachParametersAndConnect.bind(
-                null,
-                id, password, connection);
-    }
-}
-// --DEV-CODE EDITS UP
- 
-
-
 
 /**
  * Opens new connection.
