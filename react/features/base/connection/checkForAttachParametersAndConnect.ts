@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // --DEV-CODE EDITS DOWN
 /**
  * Checks if we have data to use attach instead of connect. If we have the data
@@ -10,7 +12,7 @@
  * @param {string} [password] password
  * @param {string} [roomName] the name of the conference.
  */
-export default function checkForAttachParametersAndConnect(id, password, connection) {
+export default function checkForAttachParametersAndConnect(id?: string, password?: string, connection: any) {
     if (window.XMPPAttachInfo) {
         APP.connect.status = "connecting";
 

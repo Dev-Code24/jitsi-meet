@@ -23,7 +23,7 @@ import {
 import { JITSI_CONNECTION_URL_KEY } from './constants';
 import logger from './logger';
 import { ConnectionFailedError, IIceServers } from './types';
-import checkForAttachParametersAndConnect from '../../../../connection_optimization/checkForAttachParametersAndConnect.js';
+import checkForAttachParametersAndConnect from './checkForAttachParametersAndConnect';
 
 /**
  * The options that will be passed to the JitsiConnection instance.
