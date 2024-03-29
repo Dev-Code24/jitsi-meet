@@ -21,10 +21,8 @@ const blacklist = [ '__proto__', 'constructor', 'prototype' ];
  * of {@code url.search}; otherwise, out of {@code url.hash}.
  * @returns {Object}
  */
-export function parseURLParams(
-        url: URL | string,
-        dontParse = false,
-        source = 'hash') {
+export function parseURLParams(url: URL | string, dontParse = false, source = 'hash') {
+    
     if (!url) {
         return {};
     }

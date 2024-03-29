@@ -14,7 +14,8 @@ import { parseURLParams } from "../react/features/base/util/parseURLParams";
  * NOTE: For optimal results this file should be included right after
  * external_connect.js.
  */
-
+console.log(`config.externalConnectUrl: ${config.externalConnectUrl}`);
+console.log(`typeof createConnectionExternally: ${typeof createConnectionExternally}`);
 if (typeof createConnectionExternally === "function") {
     // URL params have higher priority than config params.
     // Do not use external connect if websocket is enabled.
@@ -48,6 +49,7 @@ if (typeof createConnectionExternally === "function") {
                     status: "success",
                     data: connectionInfo,
                 };
+		console.log(" window.XMPPAttachInfo = {status:'success',data:connectionInfo}");
                 checkForConnectHandlerAndConnect();
             },
             errorCallback

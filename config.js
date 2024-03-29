@@ -27,6 +27,7 @@ var enableJaaS = false;
 var config = {
     // Connection
     //
+    externalConnectUrl:"///http-pre-bind",
 
     hosts: {
         // XMPP domain.

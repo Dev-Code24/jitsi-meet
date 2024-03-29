@@ -19,7 +19,7 @@ import {
     CONNECTION_WILL_CONNECT,
     SET_LOCATION_URL,
     SET_PREFER_VISITOR
-} from './actionTypes.ts';
+} from './actionTypes';
 import { JITSI_CONNECTION_URL_KEY } from './constants';
 import logger from './logger';
 import { ConnectionFailedError, IIceServers } from './types';
@@ -339,6 +339,8 @@ export function _connectInternal(id?: string, password?: string) {
                 //     password,
                 //     name
             // });
+            logger.info('Dev Code edits');
+            console.log(`Dev Code edits`);
             checkForAttachParametersAndConnect(id, password, connection);
             // --DEV-CODE EDITS UP
         });

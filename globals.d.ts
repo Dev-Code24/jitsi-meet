@@ -25,6 +25,7 @@ declare global {
         // selenium tests handler
         _sharedVideoPlayer: any;
         alwaysOnTop: { api: any };
+        XMPPAttachInfo: { status: string; data: any };
     }
 
     interface Document {

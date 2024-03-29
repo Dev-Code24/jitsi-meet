@@ -1,4 +1,4 @@
-// @ts-nocheck
+import logger from './logger';
 
 // --DEV-CODE EDITS DOWN
 /**
@@ -12,8 +12,11 @@
  * @param {string} [password] password
  * @param {string} [roomName] the name of the conference.
  */
-export default function checkForAttachParametersAndConnect(id?: string, password?: string, connection: any) {
+export default function checkForAttachParametersAndConnect(id?: string, password?: string, connection?: any) {
     if (window.XMPPAttachInfo) {
+	var devcodevar = window.XMPPAttachInfo
+        logger.info(`window.XMPPAttachInfo:${JSON.stringify(devcodevar)}`)
+	 // @ts-ignore
         APP.connect.status = "connecting";
 
         // When connection optimization is not deployed or enabled the default
@@ -21,6 +24,7 @@ export default function checkForAttachParametersAndConnect(id?: string, password
         // If the connection optimization is deployed and enabled and there is
         // a failure the value will be window.XMPPAttachInfo.status = "error"
         if (window.XMPPAttachInfo.status === "error") {
+            logger.info('Dev Code wished to connect');
             connection.connect({
                 id,
                 password,
@@ -32,6 +36,7 @@ export default function checkForAttachParametersAndConnect(id?: string, password
         const attachOptions = window.XMPPAttachInfo.data;
 
         if (attachOptions) {
+            logger.info('Dev Code wished to attach');
             connection.attach(attachOptions);
             delete window.XMPPAttachInfo.data;
         } else {
@@ -41,7 +46,9 @@ export default function checkForAttachParametersAndConnect(id?: string, password
             });
         }
     } else {
+	 // @ts-ignore
         APP.connect.status = "ready";
+	 // @ts-ignore
         APP.connect.handler = checkForAttachParametersAndConnect.bind(
             null,
             id,

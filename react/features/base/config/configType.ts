@@ -600,4 +600,5 @@ export interface IConfig {
         disabled?: boolean;
     };
     whiteboard?: IWhiteboardConfig;
+    externalConnectUrl ?:string
 }
