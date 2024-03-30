@@ -39,7 +39,7 @@ if (typeof createConnectionExternally === "function") {
         if (token) {
             url += `&token=${token}`;
         }
-
+        console.loge(`do_external_connect file says url:${url}`)
         createConnectionExternally(
             url,
             (connectionInfo) => {
@@ -49,11 +49,11 @@ if (typeof createConnectionExternally === "function") {
                     status: "success",
                     data: connectionInfo,
                 };
-		console.log(" window.XMPPAttachInfo = {status:'success',data:connectionInfo}");
+                console.log(" window.XMPPAttachInfo = {status:'success'} just got passed");
                 checkForConnectHandlerAndConnect();
             },
             errorCallback
-        );
+            );
     } else {
         errorCallback();
     }

@@ -10,6 +10,7 @@ declare global {
         API: any;
         conference: any;
         debugLogs: any;
+        connect:{handler:any,status:string}
     };
     const interfaceConfig: any;
 

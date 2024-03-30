@@ -16,7 +16,7 @@ export default function checkForAttachParametersAndConnect(id?: string, password
     if (window.XMPPAttachInfo) {
 	var devcodevar = window.XMPPAttachInfo
         logger.info(`window.XMPPAttachInfo:${JSON.stringify(devcodevar)}`)
-	 // @ts-ignore
+
         APP.connect.status = "connecting";
 
         // When connection optimization is not deployed or enabled the default
@@ -46,9 +46,9 @@ export default function checkForAttachParametersAndConnect(id?: string, password
             });
         }
     } else {
-	 // @ts-ignore
+
         APP.connect.status = "ready";
-	 // @ts-ignore
+
         APP.connect.handler = checkForAttachParametersAndConnect.bind(
             null,
             id,
